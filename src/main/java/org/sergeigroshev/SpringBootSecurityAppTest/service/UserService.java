@@ -3,7 +3,7 @@ package org.sergeigroshev.SpringBootSecurityAppTest.service;
 import org.sergeigroshev.SpringBootSecurityAppTest.entity.Role;
 import org.sergeigroshev.SpringBootSecurityAppTest.entity.User;
 import org.sergeigroshev.SpringBootSecurityAppTest.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +43,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     @Transactional
+    @Secured(value = "ROLE_ADMIN")// secure method
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username);
         if (user == null) {
