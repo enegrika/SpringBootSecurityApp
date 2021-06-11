@@ -45,7 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() // give us beautiful SPRING login form
 //                .defaultSuccessUrl("/authenticated")
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout().logoutSuccessUrl("/")
+                .and()
+                .csrf().disable(); // REMOVE CSRF TOKEN from FRAUD!!!;
     }
 
     // KEEP the USERS in DATABASE:
